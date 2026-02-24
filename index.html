@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tower Defense ULTRA RTX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="stats">
+                <div>💰 Деньги: <span id="money">500</span></div>
+                <div>❤️ Жизни: <span id="lives">150</span></div>
+                <div>🌊 Волна: <span id="wave">1</span></div>
+            </div>
+        </div>
+        
+        <div class="selected-tower-info">
+            <span>🎯 ВЫБЕРИТЕ БАШНЮ (1-0):</span>
+            <div class="tower-buttons">
+                <!-- ОСНОВНЫЕ БАШНИ (6) -->
+                <button class="tower-btn" data-tower="basic">🔫 Обычная (50💰)</button>
+                <button class="tower-btn" data-tower="splash">💥 Взрывная (80💰)</button>
+                <button class="tower-btn" data-tower="slow">❄️ Замедляющая (60💰)</button>
+                <button class="tower-btn" data-tower="sniper">🎯 Снайпер (120💰)</button>
+                <button class="tower-btn" data-tower="laser">⚡ Лазер (100💰)</button>
+                <button class="tower-btn" data-tower="farm">💰 Ферма (90💰)</button>
+                
+                <!-- НОВЫЕ БАШНИ! (ЕЩЁ 6) -->
+                <button class="tower-btn" data-tower="ice">🧊 Ледяная (110💰)</button>
+                <button class="tower-btn" data-tower="poison">☠️ Ядовитая (130💰)</button>
+                <button class="tower-btn" data-tower="lightning">⚡ Молния (140💰)</button>
+                <button class="tower-btn" data-tower="missile">🚀 Ракетная (150💰)</button>
+                <button class="tower-btn" data-tower="tesla">🌀 Тесла (160💰)</button>
+                <button class="tower-btn" data-tower="nuclear">☢️ Ядерная (200💰)</button>
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button id="startGame" class="control-btn">🎮 ЗАПУСК</button>
+            <button id="restartGame" class="control-btn">🔄 ЗАНОВО</button>
+            <button id="upgradeTower" class="control-btn upgrade-btn">⬆️ УЛУЧШИТЬ</button>
+            <button id="removeTower" class="control-btn remove-btn">🗑️ УДАЛИТЬ</button>
+        </div>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="800" height="600"></canvas>
+            <div class="info-panel">
+                <h3>🔍 ИНФОРМАЦИЯ</h3>
+                <div id="infoContent">Наведите на башню или врага</div>
+                <div id="waveTimer" style="display: none;">⏰ Следующая через: <span id="timerValue">5</span>с</div>
+                <div id="waveDuration" style="display: none;"></div>
+            </div>
+        </div>
+        
+        <div class="game-footer">
+            <div id="waveStatus">⏳ ОЖИДАНИЕ ЗАПУСКА</div>
+            <div id="enemyCount">👾 0</div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

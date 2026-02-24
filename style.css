@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a2f3f, #102129);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.game-container {
+    background: #2c3e50;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 1200px;
+    width: fit-content;
+    border: 1px solid #4a6b8a;
+}
+
+.game-header {
+    background: #34495e;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: white;
+    border: 1px solid #4a6b8a;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    font-weight: bold;
+    gap: 20px;
+}
+
+.stats div {
+    background: #2c3e50;
+    padding: 8px 25px;
+    border-radius: 20px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.selected-tower-info {
+    background: #34495e;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    color: white;
+    text-align: center;
+    border: 1px solid #4a6b8a;
+}
+
+.selected-tower-info span {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.tower-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.tower-btn {
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 110px;
+    transition: all 0.2s ease;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.tower-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.1);
+}
+
+.tower-btn.selected {
+    transform: scale(1.05);
+    border: 2px solid white;
+    box-shadow: 0 0 15px gold;
+}
+
+/* Цвета башен (упрощенно) */
+.tower-btn[data-tower="basic"] { background: #3498db; }
+.tower-btn[data-tower="splash"] { background: #e67e22; }
+.tower-btn[data-tower="slow"] { background: #27ae60; }
+.tower-btn[data-tower="sniper"] { background: #8e44ad; }
+.tower-btn[data-tower="laser"] { background: #f1c40f; color: #2c3e50; }
+.tower-btn[data-tower="farm"] { background: #f39c12; }
+.tower-btn[data-tower="ice"] { background: #00bcd4; }
+.tower-btn[data-tower="poison"] { background: #9b59b6; }
+.tower-btn[data-tower="lightning"] { background: #ffd700; color: #2c3e50; }
+.tower-btn[data-tower="missile"] { background: #e74c3c; }
+.tower-btn[data-tower="tesla"] { background: #00ffff; color: #2c3e50; }
+.tower-btn[data-tower="nuclear"] { background: #ff4500; }
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    min-width: 120px;
+    transition: transform 0.2s;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.control-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.control-btn:disabled {
+    background: #7f8c8d;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.control-btn#restartGame { background: #e74c3c; }
+.control-btn.upgrade-btn { background: #8e44ad; }
+.control-btn.remove-btn { background: #95a5a6; }
+
+.control-btn.upgrade-btn.active {
+    background: #27ae60;
+    box-shadow: 0 0 15px #27ae60;
+}
+
+.control-btn.remove-btn.active {
+    background: #e74c3c;
+    box-shadow: 0 0 15px #e74c3c;
+}
+
+.game-area {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+#gameCanvas {
+    background: #1e2b38;
+    border: 3px solid #34495e;
+    border-radius: 10px;
+    cursor: crosshair;
+    width: 800px;
+    height: 600px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.info-panel {
+    width: 280px;
+    background: #34495e;
+    border-radius: 10px;
+    padding: 15px;
+    color: white;
+    flex-shrink: 0;
+    border: 1px solid #4a6b8a;
+}
+
+.info-panel h3 {
+    text-align: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #3498db;
+}
+
+#infoContent {
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 200px;
+    margin-bottom: 15px;
+    background: #2c3e50;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#waveTimer, #waveDuration {
+    background: #2c3e50;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #3498db;
+    margin-top: 10px;
+}
+
+.game-footer {
+    background: #34495e;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #4a6b8a;
+}
+
+#waveStatus {
+    color: #f1c40f;
+    font-weight: bold;
+}
+
+#enemyCount {
+    background: #2c3e50;
+    padding: 5px 20px;
+    border-radius: 20px;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.notification.success { background: #27ae60; }
+.notification.error { background: #e74c3c; }
+.notification.info { background: #3498db; }
+.notification.warning { background: #f39c12; }
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0%); opacity: 1; }
+}
+
+@media (max-width: 1200px) {
+    .game-area { flex-direction: column; }
+    .info-panel { width: 100%; }
+    #gameCanvas { width: 100%; height: auto; }
+}
